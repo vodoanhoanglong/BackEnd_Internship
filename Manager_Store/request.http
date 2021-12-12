@@ -1,0 +1,12 @@
+GET http://localhost:3000/api/auth/login 
+Content-Type: application/json
+
+{
+    "username": "long",
+    "password": "123"
+}
+
+###
+GET http://localhost:3000/ 
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYzOTI4MTA2NX0.nqWZHoY8NwIOhP7Zim-_OMlA2o3g--JV4qc3rYTRInU

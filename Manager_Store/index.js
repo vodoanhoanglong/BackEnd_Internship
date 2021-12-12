@@ -1,21 +1,20 @@
+// write 3 API for app
+// 1. GET: login() api/auth/login
+// 2. POST: addStore() api/store/add
+// 3. PUT: contractTermination() api/contract/termination
 const express = require("express");
+const cors = require("cors");
 
-const models = require("./models"); // loads index.js
-const Account = models.account;
-const Owner = models.owner;
-const Freelance = models.freelance;
-const Store = models.store;
-const Contract = models.contract;
-const Request = models.request;
+const verifyToken = require("./middleware/auth");
+const authRouter = require("./routes/auth");
 
 const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => {
-  Freelance.findAll().then((person) => res.send(person));
-});
+app.use("/api/auth", authRouter);
 
 const PORT = 3000;
-
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
 
 //test
