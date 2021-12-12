@@ -4,12 +4,14 @@ const Owner = models.owner;
 
 module.exports = async (req, res) => {
   const { phoneNumber, name, logo, email, address, haveStaff } = req.body;
-  console.log(req.userId);
+
+  if (!phoneNumber || !name || !logo || !email || !address || haveStaff == null)
+    return res.json({ success: false, message: "Please enter info" });
+
   try {
     let owner = await Owner.findOne({ where: { accountID: req.userId } });
     let { ownerID } = owner;
-    await Store.sync({ force: true });
-    // Table created
+
     await Store.create({
       phoneNumber,
       name,
