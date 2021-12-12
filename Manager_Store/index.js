@@ -7,12 +7,14 @@ const cors = require("cors");
 
 const verifyToken = require("./middleware/auth");
 const authRouter = require("./routes/auth");
+const storeRouter = require("./routes/store");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use("/api/auth", authRouter);
+app.use("/api/store", verifyToken, storeRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
